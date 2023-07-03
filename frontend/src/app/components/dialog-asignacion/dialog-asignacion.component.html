@@ -1,0 +1,69 @@
+<form [formGroup]="this.datosInput.formGroup" (ngSubmit)="guardar()" class="min-h-[70vh]">
+  <h1 mat-dialog-title class="">{{datosInput.title}}</h1>
+  <div mat-dialog-content class="flex flex-col w-full gap-4">
+    <app-mensaje *ngIf="mensaje" (visible)="mensaje = null" tipo="{{mensaje.tipo}}"
+      contenido="{{mensaje.contenido}}"></app-mensaje>
+    <div class="grid grid-cols-7 md:grid-cols-10 lg:grid-cols-12 gap-4">
+      <mat-form-field class="col-span-5 md:col-span-8 lg:col-span-11">
+        <mat-label>Nombre</mat-label>
+        <input required="true" matInput formControlName="nombre">
+      </mat-form-field>
+      <div class="flex flex-col justify-center items-center place-self-start">
+        <mat-label>Estatus</mat-label>
+        <mat-slide-toggle class="text-xl" formControlName="estatus"></mat-slide-toggle>
+      </div>
+    </div>
+    <div class="grid grid-cols-4 md:gap-4">
+      <mat-form-field class="col-span-4 md:col-span-3">
+        <mat-label>Elija el rango de fecha y hora</mat-label>
+        <input type="text" matInput formControlName="fechaInicio" (change)="proyectores = []"
+          (click)="abrirCalendario()" />
+      </mat-form-field>
+      <button class="col-span-4 md:col-span-1 h-[35px] md:h-[54px] " mat-flat-button color="primary"
+        (click)="obtenerProyectores()" type="button">Buscar
+        disponibles</button>
+    </div>
+
+
+    <mat-label>{{proyectores.length > 0 ? "Elija un proyector:"
+      : "Seleccione un rango de fechas para que que vea los proyectores disponibles"}}</mat-label>
+    <ng-template #mostrarProy>
+      <div *ngIf="proyectores.length > 0; else padding">
+
+        <app-grid [editable]="false" [proyectores]="proyectores"
+          (seleccionado)="proyectorSeleccionado($event)"></app-grid>
+      </div>
+    </ng-template>
+    <div *ngIf="loaderService.isLoading | async; else mostrarProy"
+      class="flex flex-col w-full h-[40vh] justify-around items-center">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <ng-template #padding>
+      <div class="p-[6rem]"></div>
+    </ng-template>
+
+
+  </div>
+  <div mat-dialog-actions class="flex gap-4 justify-end mr-4 self-end	">
+    <button mat-raised-button type="submit" color="primary">Confirmar</button>
+    <a (click)="closeModal()" mat-stroked-button color="primary">Cerrar</a>
+  </div>
+</form>
+
+<ng-template #template>
+  <div class="flex p-6 flex-col ">
+    <h1 class="font-bold text-xl">Confirmar selección</h1>
+    <div class="flex flex-col md:flex-row mb-4 items-center">
+
+      <img class="max-w-[160px]"
+        src="https://mediaserver.goepson.com/ImConvServlet/imconv/519298de315b73042c07f8db1696a0c95c08a98e/1200Wx1200H?use=banner&hybrisId=B2C&assetDescr=pl109w_hero-left" />
+      <mat-label class="text-lg font-semibold">Ha seleccionado el proyector
+        {{this.datosInput.formGroup.value.proyector.nombre}}, su número de serie es
+        {{this.datosInput.formGroup.value.proyector.serie}}.</mat-label>
+
+    </div>
+    <button class="self-end" mat-raised-button type=" submit" color="primary"
+      (click)="closeConfirm()">Continuar</button>
+  </div>
+</ng-template>

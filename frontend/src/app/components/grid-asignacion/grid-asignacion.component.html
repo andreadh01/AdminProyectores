@@ -1,0 +1,32 @@
+<div class="py-[20px]">
+  <div class="grid grid-cols-1 xl:grid-cols-2 place-content-center gap-4 grid-flow-row">
+    <div class="flex flex-1 " *ngFor="let asig of asignaciones">
+      <div class="grow relative shadow-lg py-4 px-6 flex flex-col text-center items-center justify-center rounded-sm"
+        [ngClass]="{'bg-gray-200': !asig.estatus}" (click)="seleccionar(asig)">
+        <button mat-icon-button (click)="editarAsignacion(asig)"
+          class="bg-gray-200 text-black bg-transparent absolute top-0 right-0"><mat-icon>edit</mat-icon></button>
+        <mat-card-content class="w-full">
+          <div class="flex items-center justify-around">
+            <div class="flex flex-col text-start ">
+              <mat-card-title class="w-full block text-start">Asignación para {{asig.nombre}}</mat-card-title>
+              <p class="mt-8">Fecha de inicio: {{obtenerFecha(asig.fechaInicio)}}</p>
+              <p>Fecha de fin: {{obtenerFecha(asig.fechaFin)}}</p>
+              <p>Fecha agregado: {{obtenerFecha(asig.fechaAgregado)}}</p>
+              <button class="self-start text-blue-700 mt-4" (click)=" cambiarEstatus(asig)" mat-button>{{asig.estatus ?
+                'DESACTIVAR' :
+                'ACTIVAR'}}</button>
+            </div>
+            <div>
+              <p class="font-bold">Proyector apartado</p>
+              <img mat-card-image class="max-w-[160px]"
+                src="https://mediaserver.goepson.com/ImConvServlet/imconv/519298de315b73042c07f8db1696a0c95c08a98e/1200Wx1200H?use=banner&hybrisId=B2C&assetDescr=pl109w_hero-left" />
+
+              <p>{{asig.proyector.nombre}}</p>
+              <p>No. de serie: {{asig.proyector.serie}}</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </div>
+    </div>
+  </div>
+</div>

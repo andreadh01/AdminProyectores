@@ -1,0 +1,32 @@
+﻿<Properties StartupConfiguration="{66B1D090-DA5B-45FA-B13B-8CBC6F4D49F1}|https">
+  <MonoDevelop.Ide.ItemProperties.api PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="api/Proyector.cs">
+    <Files>
+      <File FileName="api/Proyector.cs" Line="12" Column="13" />
+      <File FileName="api/Controllers/ProyectorController.cs" Line="76" Column="101" />
+      <File FileName="api/api.csproj" />
+      <File FileName="api/Program.cs" />
+      <File FileName="api/Data/DataContext.cs" />
+      <File FileName="api/appsettings.json" Line="3" Column="104" />
+      <File FileName="api/Controllers/AsignacionController.cs" Line="76" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="api" expanded="True">
+            <Node name="api">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Proyector.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

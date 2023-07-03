@@ -1,0 +1,39 @@
+<mat-sidenav-container>
+  <mat-sidenav #drawer fixedInViewport="true" [attr.role]="isMobileLayout ? 'dialog' : 'navigation'"
+    [mode]="isMobileLayout ? 'over' : 'side'" [opened]="!isMobileLayout" class="mat-elevation-z7"
+    [ngClass]="isExpanded ? 'w-[370px]' : 'w-[80px]'">
+    <mat-toolbar>
+      <button mat-icon-button (click)="isExpanded = !isExpanded" *ngIf="!isMobileLayout" aria-label="Toggle sidenav">
+        <mat-icon aria-label="Menu">dashboard</mat-icon>
+      </button>
+      <span *ngIf="isExpanded"> Administrador de Proyectores</span>
+    </mat-toolbar>
+
+
+    <mat-nav-list>
+      <mat-list-item [routerLink]="nav.route" routerLinkActive="bg-gray-200" [routerLinkActiveOptions]="{exact: true}"
+        *ngFor="let nav of fillerNav" (click)="closeSideNav()">
+        <a class="ml-1 bg-transparent" mat-flat-button>
+          <mat-icon class="mr-6">{{nav.icon}}</mat-icon>
+          {{nav.name}}
+        </a>
+
+      </mat-list-item>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content
+    [ngClass]="{'ml-0':isMobileLayout,'ml-[370px]':isExpanded && !isMobileLayout, 'ml-[80px]': !isExpanded && !isMobileLayout}">
+    <mat-toolbar *ngIf="isMobileLayout" class="mat-elevation-z7" color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isMobileLayout">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      Administrador de Proyectores
+
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

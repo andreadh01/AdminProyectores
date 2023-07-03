@@ -1,0 +1,29 @@
+<main class="md:mx-12 mx-4 mt-2">
+  <div class="flex justify-between">
+    <h1 class=" text-3xl font-semibold mt-2">Asignaciones</h1>
+    <div class="flex justify-end ">
+      <button (click)="changeView(true)" mat-icon-button><mat-icon>grid_view</mat-icon></button>
+      <button (click)="changeView(false)" mat-icon-button><mat-icon>format_list_bulleted</mat-icon></button>
+    </div>
+  </div>
+  <div class="my-8">
+
+
+    <app-mensaje *ngIf="mensaje" (visible)="mensaje = null" tipo="{{mensaje.tipo}}"
+      contenido="{{mensaje.contenido}}"></app-mensaje>
+
+    <div class="flex justify-between">
+      <button mat-raised-button (click)="agregarAsignacion()" color="primary">Agregar asignación</button>
+      <button mat-raised-button (click)="guardar()" color="primary" [disabled]="!(asigCambiados.length > 0)">Guardar
+        cambios</button>
+    </div>
+    <app-tabla *ngIf="!grid" [dataSource]="asignaciones" [displayedColumns]="columnasDisplay"
+      (itemAEditar)="editarAsignacion($event)" (cambiados)="agregarCambio($event)"></app-tabla>
+    <app-grid-asignacion *ngIf="grid" (editar)="editarAsignacion($event)" (cambiados)="agregarCambio($event)"
+      [asignaciones]="asignaciones"></app-grid-asignacion>
+
+    <div *ngIf="loaderService.isLoading | async" class="flex w-full h-[65vh] justify-center items-center">
+      <mat-spinner class=""></mat-spinner>
+    </div>
+  </div>
+</main>

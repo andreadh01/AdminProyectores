@@ -1,0 +1,15 @@
+<div class="flex justify-center items-center flex-col">
+
+  <bs-daterangepicker-inline class="relative" [bsConfig]=" {withTimepicker: true, keepDatepickerOpened: true, rangeInputFormat : 'MMMM D YYYY, h:mm a' ,
+    dateInputFormat: 'MMMM D YYYY, h:mm a' }" [minDate]="minDate" #dp id="datepicker"
+    (bsValueChange)="actualizar($event)" [bsValue]="dateRange">
+    <app-mensaje *ngIf="mensaje" class="absolute top-4 left-4 z-50" (visible)="mensaje = null" tipo="{{mensaje.tipo}}"
+      contenido="{{mensaje.contenido}}"></app-mensaje>
+
+    <button id="continuar" mat-raised-button class="bg-[#ff4081] absolute bottom-8 right-4 z-50 text-white"
+      (click)="close()">Continuar</button>
+
+  </bs-daterangepicker-inline>
+
+
+</div>

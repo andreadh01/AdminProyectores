@@ -1,0 +1,25 @@
+<div class="py-[20px]">
+  <div class="grid grid-cols-1 sm:grid-cols-2 place-content-center	 lg:grid-cols-3 xl:grid-cols-4 gap-4 grid-flow-row">
+    <div class="flex flex-1 " *ngFor="let proy of proyectores">
+      <div class="grow relative shadow-lg py-8 px-6 flex flex-col text-center items-center justify-center rounded-sm"
+        [ngClass]="{'bg-gray-200': !proy.estatus, 'z-depth':!editable,'active': !editable && itemSeleccionado && itemSeleccionado.id === proy.id}"
+        (click)="!editable && seleccionar(proy)">
+        <button *ngIf="editable" mat-icon-button (click)="editarProyector(proy)"
+          class="bg-gray-200 text-black bg-transparent absolute top-0 right-0"><mat-icon>edit</mat-icon></button>
+        <mat-card-header>
+          <mat-card-title>{{proy.nombre}}</mat-card-title>
+        </mat-card-header>
+        <img *ngIf="editable" mat-card-image class="max-w-[160px]"
+          src="https://mediaserver.goepson.com/ImConvServlet/imconv/519298de315b73042c07f8db1696a0c95c08a98e/1200Wx1200H?use=banner&hybrisId=B2C&assetDescr=pl109w_hero-left" />
+        <mat-card-content>
+          <p>No. de serie: {{proy.serie}}</p>
+          <p *ngIf="editable">Fecha agregado: {{obtenerFecha(proy.fechaAgregado)}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button *ngIf="editable" (click)="cambiarEstatus(proy)" mat-button>{{proy.estatus ? 'DESACTIVAR' :
+            'ACTIVAR'}}</button>
+        </mat-card-actions>
+      </div>
+    </div>
+  </div>
+</div>
